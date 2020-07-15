@@ -1,0 +1,91 @@
+Where to store files
+
+gcode-start.txt, gcode-end.txt and seurat.ss must all go in the same folder that you can chose
+
+script-fu-pixellate-to file
+This must be placed in the Gimp - script folder C:...\AppData\Roaming\GIMP\2.10\scripts
+
+To enable access to it open Gimp.
+
+Under the Filters tab click Script-Fu -> Refresh Scripts
+
+
+Options
+
+Image Text File Options
+
+You MUST add 3 numbers at the beginning of the file each separated by a space.
+
+First number:
+This number comprises 3 sets of options based on the hundreds, tens and units of its value
+
+Hundreds: adds a layer(s) of backing in the colour specified
+1 cyan
+2 magenta
+3 yellow
+4 key
+any other value including numbers less than 100 provides a separate ...b.obj file
+
+please note options 1-4 currrently provide a poor result and if chosen this must be the last colour printed
+
+Tens: specifies the thickness of the backing
+1 even (including 0 or numbers less than 10) 1 layer 0.2mm
+2 odd 2 layers 0.4mm thick specifically this is for cheat mode where you only print cyan, magenta and yellow and then a key colour backing
+
+Units:
+1 even an rgb data file
+2 odd an rgba data file*
+
+You must include a number. Type 0 for all defaults
+
+*This is determined when converting the hex file into text. For RGBa the file will show FF for every 4th byte i.e offset 03, 07 etc.
+
+Second number
+Image height in pixels
+
+Third number
+Image width in pixels
+
+These two sizes can be found in Gimp under Image->Image Properties.
+They MUST be entered in reverse order
+
+Save the Image Text File with a 3 character extension e.g. .txt
+
+Gcode-start.txt Options
+
+Save a copy of this file under a different name.
+
+You can damage your printer if you alter these settings.
+
+You may alter the values for:
+res - the size of each pixel (your res X width must be less than your bed size x-axis and res X height less than bed size y-axis)
+res default 0.35
+lo-speed - the lowest speed at which the printer will print (60 = 1mm/s)
+lo-speed default 60
+speed-factor - how much faster the printer will print connected pixels
+speed-factor - 0.1
+top-speed - the fastest the printer will print
+top-speed default 1200
+o-flow - the distance from the edge of a pixel the printer will start to print in mm (cf Flow Math in the Slic3r manual)
+o-flow default 0.1
+flow-rate - standard extrusion flow-rate
+flow-rate default 1.00
+dwell - the length of time the nozzle will remain stationary printing a single pixel in ms
+dwell default 75
+p-flow-rate - flow rate for pixel printing
+p-flow-rate default 0.95
+
+Options for different PLAs
+To vary settings for different colours (brands) of filament you will have to run seurat again for each setting, renamimg the files you wish to keep between runs
+
+DO NOT remove the semi-colons on these lines,.
+DO NOT add anything and LEAVE the spaces after each colon.
+
+Temperature settings
+
+nozzle temp - change the M104 and M109 lines
+bed temp - change the M140 line
+
+To vary temp settings for different colours change the gcode in, say, Notepad directly after running seurat.
+
+Save the file without changing its name.
